@@ -104,10 +104,21 @@ int main(void)
   	  	  	  	  	  0, 0, 0, 0, 0, 0, 0
   };
 
+  uint32_t morse = 0b101010011101110111101010000000;
+
   while (1)
   {
 	  for (int i = 0; i < 32; i++) {
 		  if (pole[i]) {
+			  LL_GPIO_SetOutputPin(LD2_GPIO_Port, LD2_Pin);
+		  } else {
+			  LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin);
+		  }
+		  LL_mDelay(200);
+	  }
+
+	  for (int i = 0; i < sizeof(morse * 8); i++) {
+		  if ((morse >> i) & 1) {
 			  LL_GPIO_SetOutputPin(LD2_GPIO_Port, LD2_Pin);
 		  } else {
 			  LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin);

@@ -92,19 +92,36 @@ void tlacitka(void) {
 
 	static uint32_t off_time;
 
+	static uint16_t debounce = 0;
+	static uint32_t last_tick = 0;
+
 	uint32_t new_s2 = LL_GPIO_IsInputPinSet(S2_GPIO_Port, S2_Pin);
 	uint32_t new_s1 = LL_GPIO_IsInputPinSet(S1_GPIO_Port, S1_Pin);
 
 	// falling edge
-	if (old_s1 && !new_s1) {
-		off_time = Tick + LED_TIME_LONG;
-		LL_GPIO_SetOutputPin(LED2_GPIO_Port, LED2_Pin);
+	static uint32_t last_time = 0;
+
+	if ((Tick - last_time) >= 40) {
+
+		if (old_s2 && !new_s2) {
+				off_time = Tick + LED_TIME_SHORT;
+				LL_GPIO_SetOutputPin(LED2_GPIO_Port, LED2_Pin);
+				last_time = Tick;
+		}
 	}
 
-	if (old_s2 && !new_s2) {
-		off_time = Tick + LED_TIME_SHORT;
-		LL_GPIO_SetOutputPin(LED2_GPIO_Port, LED2_Pin);
-	}
+
+    // Debounce S1 každých 5ms
+    if ((Tick - last_tick) >= 5) {
+        last_tick = Tick;
+
+        debounce = (debounce << 1) | LL_GPIO_IsInputPinSet(S1_GPIO_Port, S1_Pin);
+
+        if (debounce == 0x7FFF) {
+            off_time = Tick + LED_TIME_LONG;
+            LL_GPIO_SetOutputPin(LED2_GPIO_Port, LED2_Pin);
+        }
+    }
 
 	old_s1 = new_s1;
 	old_s2 = new_s2;
@@ -161,6 +178,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
 	  tlacitka();
+	  blikac();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

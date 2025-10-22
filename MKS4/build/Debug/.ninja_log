@@ -53,3 +53,6 @@
 296	687	1760519710695666095	cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c.c.obj	628d843df288052f
 557	725	1760519710956903309	cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart.c.obj	da342c911c75dd1a
 725	778	1760519711124890908	MKS4.elf	ac1f45ba0fb6ed5c
+2	146	1761127685051197419	CMakeFiles/MKS4.dir/Src/maine.c.obj	f970f9723014fde2
+3	146	1761127685051450542	CMakeFiles/MKS4.dir/Src/sct.c.obj	f2988567a96ece1b
+146	216	1761127685194667302	MKS4.elf	ac1f45ba0fb6ed5c

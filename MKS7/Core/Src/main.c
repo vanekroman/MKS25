@@ -127,13 +127,6 @@ int main(void)
   MX_USART2_UART_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  lis2dw12_full_scale_set(&lis2dw12, LIS2DW12_2g);
-  lis2dw12_power_mode_set(&lis2dw12, LIS2DW12_CONT_LOW_PWR_LOW_NOISE_2);
-  lis2dw12_block_data_update_set(&lis2dw12, PROPERTY_ENABLE);
-  // enable continuous FIFO
-  lis2dw12_fifo_mode_set(&lis2dw12, LIS2DW12_STREAM_MODE);
-  // enable part from power-down
-  lis2dw12_data_rate_set(&lis2dw12, LIS2DW12_XL_ODR_25Hz);
 
   /* USER CODE END 2 */
 
@@ -399,7 +392,15 @@ void StartDefaultTask(void const * argument)
 /* USER CODE END Header_StartAcceleroTask */
 void StartAcceleroTask(void const * argument)
 {
-  /* USER CODE BEGIN StartAcceleroTask */
+	/* USER CODE BEGIN StartAcceleroTask */
+	lis2dw12_full_scale_set(&lis2dw12, LIS2DW12_2g);
+	lis2dw12_power_mode_set(&lis2dw12, LIS2DW12_CONT_LOW_PWR_LOW_NOISE_2);
+	lis2dw12_block_data_update_set(&lis2dw12, PROPERTY_ENABLE);
+	// enable continuous FIFO
+	lis2dw12_fifo_mode_set(&lis2dw12, LIS2DW12_STREAM_MODE);
+	// enable part from power-down
+	lis2dw12_data_rate_set(&lis2dw12, LIS2DW12_XL_ODR_25Hz);
+
 	/* Infinite loop */
 	for(;;)
 	{
@@ -417,11 +418,11 @@ void StartAcceleroTask(void const * argument)
 		 printf("X=%d Y=%d Z=%d\r\n", raw_acceleration[0], raw_acceleration[1], raw_acceleration[2]);
 		}
 
-		vTaskDelay(50);
+
 		xQueueSend(xVisualQueueHandle, &raw_acceleration, 0);
-		osDelay(1);
+		vTaskDelay(50);
 	}
-  /* USER CODE END StartAcceleroTask */
+	/* USER CODE END StartAcceleroTask */
 }
 
 /* USER CODE BEGIN Header_StartVisualTask */

@@ -47,8 +47,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     examples/tcpecho.c
     examples/telnet.c
-    Middlewares/Third_Party/LwIP/src/apps/http/httpd.c
-    Middlewares/Third_Party/LwIP/src/apps/http/fs.c
+    # Middlewares/Third_Party/LwIP/src/apps/http/httpd.c
+    # Middlewares/Third_Party/LwIP/src/apps/http/fs.c
     # Middlewares/Third_Party/LwIP/src/apps/http/fsdata.c
 )
 

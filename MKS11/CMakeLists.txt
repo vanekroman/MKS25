@@ -46,6 +46,9 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     examples/tcpecho.c
+    Middlewares/Third_Party/LwIP/src/apps/http/httpd.c
+    Middlewares/Third_Party/LwIP/src/apps/http/fs.c
+    # Middlewares/Third_Party/LwIP/src/apps/http/fsdata.c
 )
 
 # Add include paths

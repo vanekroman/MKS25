@@ -1,3 +1,6 @@
 [submodule "MKS7/Drivers/lis2dw12-pid"]
 	path = MKS7/Drivers/lis2dw12-pid
 	url = https://github.com/STMicroelectronics/lis2dw12-pid.git
+[submodule "MKS12/Drivers/stm32-hal-rfm95"]
+	path = MKS12/Drivers/stm32-hal-rfm95
+	url = https://github.com/henriheimann/stm32-hal-rfm95.git
